@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef} from 'react';
 import Header from '../components/Header.js';
 import styles from '../styles/main.module.css';
 import data from '../data';
@@ -7,17 +6,17 @@ import data from '../data';
 
 export default function About() {
   const [rangeVal, setRange] = useState(1);
+  const ranger = useRef(rangeVal);
 
-  useEffect(() => {
-    handleChange(rangeVal)
-  }, [rangeVal])
-
-  function handleChange(val) {
-    setRange(val);
+  useEffect(() => {    
+    // swap content
+    let index = ranger.current.value;
+    let title = document.getElementById("title")
+    title.innerHTML = data[index].title;
     let content = document.getElementById("content")
-    content.innerHTML = data[rangeVal].text;
-  }
+    content.innerHTML = data[index].text;
 
+  }, [rangeVal, ranger.current.value])
 
   return (
     <div className={styles.container}>
@@ -25,21 +24,18 @@ export default function About() {
       <h1 className={styles.who}>Who am I?</h1>
         <div style={{width: "120px"}}>
           <input 
-          onChange={(e) => handleChange(e.target.value)} 
+          onChange={(e) => setRange(e.target.value)} 
           className={styles.range}
+          ref={ranger}
           type="range"
           min="0"
           max="2"
           step="1"
           ></input>
         </div>
-      <div style={{alignSelf: 'flex-start'}}> 
-        <h2 className={styles.header}>
-          {data[rangeVal].title}
-        </h2>
-        <p id="content" style={{lineHeight: "20px;"}}>
-          
-        </p>
+      <div style={{alignSelf: 'flex-start', paddingTop: "15px"}}> 
+        <h2 id="title"></h2>
+        <p id="content"></p>
         <h3 style={{marginTop: "20px"}}>
           Check out my work. <a href="mailto:themichalakfeed@gmail.com" className={styles.underline}>Connect with me</a>. Let's work together!
         </h3>
