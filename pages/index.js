@@ -34,7 +34,7 @@ export default function About() {
           ></input>
         </div>
       <div style={{alignSelf: 'flex-start'}}> 
-        <h2 style={{margin: "30px 0px 10px 0px;"}}>
+        <h2 className={styles.header}>
           {data[rangeVal].title}
         </h2>
         <p id="content" style={{lineHeight: "20px;"}}>
