@@ -23,7 +23,7 @@ export default function About() {
     <div className={styles.container}>
       <Header></Header>
       <h1 className={styles.who}>Who am I?</h1>
-        <div style={{width: "120px"}}>
+        <div className={styles.slider_container}>
           <input 
           onChange={(e) => setRange(e.target.value)} 
           className={styles.range}
