@@ -8,13 +8,13 @@ export default function About() {
   const [rangeVal, setRange] = useState(1);
   const ranger = useRef(rangeVal);
 
-  useEffect(() => {    
+  useEffect(() => {
+    setRange(ranger.current.value);
     // swap content
-    let index = ranger.current.value;
-    let title = document.getElementById("title")
-    title.innerHTML = data[index].title;
-    let content = document.getElementById("content")
-    content.innerHTML = data[index].text;
+    let title = document.getElementById("title");
+    title.innerHTML = data[rangeVal].title;
+    let content = document.getElementById("content");
+    content.innerHTML = data[rangeVal].text;
 
   }, [rangeVal, ranger.current.value])
 
