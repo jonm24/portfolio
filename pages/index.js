@@ -10,6 +10,7 @@ export default function About() {
 
   useEffect(() => {
     setRange(ranger.current.value);
+    console.log(rangeVal, ranger.current.value);
     // swap content
     let title = document.getElementById("title");
     title.innerHTML = data[rangeVal].title;
@@ -33,7 +34,7 @@ export default function About() {
           step="1"
           ></input>
         </div>
-      <div style={{alignSelf: 'flex-start', paddingTop: "15px"}}> 
+      <div className={styles.content}>
         <h2 id="title"></h2>
         <p id="content"></p>
         <h3 style={{marginTop: "20px"}}>
